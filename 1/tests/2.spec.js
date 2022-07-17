@@ -1,6 +1,6 @@
 const {test,expect} = require('@playwright/test');
 
-test('First test from the list',async ({page}) =>
+test('Test from "Zadanie B" ',async ({page}) =>
 {
 await page.goto("https://webdriveruniversity.com/Contact-Us/contactus.html");
 console.log (await page.title());
@@ -14,7 +14,11 @@ await last_name.type("Wysocki");
 //await email_address.type("dariusz.wysocki@itmagination.com");
 await submitButton.click();
 await expect(page).toHaveTitle("Contact form handler");
-const error = await page.locator ("//body)[1]");
-console.log (error);
+const errorNotif = page.locator('body');
+await expect (errorNotif).toContainText('Error: all fields are required');
+await expect (errorNotif).toContainText('Error: Invalid email address');
+
+
+  //  console.log(await error.innerText());
 
 })
